@@ -3,7 +3,7 @@ use dotenv::dotenv;
 use serde::{Deserialize, Serialize};
 use serde_json::{Map, Value};
 
-use auth_service::{configure_service, create_schema, create_connection_pool, run_migrations};
+use auth_service::{configure_service, create_connection_pool, create_schema, run_migrations};
 
 pub async fn test_graphql_request(request_body: GraphqlRequest) -> GraphqlResponse {
     dotenv().ok();
