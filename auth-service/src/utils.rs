@@ -20,3 +20,19 @@ pub fn verify_password(hash: &str, password: &str) -> Result<bool, Error> {
         .with_secret_key(PASSWORD_SECRET_KEY.as_str())
         .verify()
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_password_hashing() {
+        std::env::set_var("PASSWORD_SECRET_KEY", "test secret key");
+
+        let password = "test password 123";
+
+        let hash = hash_password(&password).unwrap();
+        assert_ne!(password, hash);
+        assert!(verify_password(&hash, &password).unwrap());
+    }
+}
