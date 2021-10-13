@@ -19,6 +19,7 @@ pub mod graphql;
 pub mod models;
 pub mod repository;
 pub mod schema;
+pub mod utils;
 
 pub type PgPool = Pool<ConnectionManager<PgConnection>>;
 
@@ -56,10 +57,15 @@ async fn index_playground() -> Result<HttpResponse> {
 }
 
 pub fn create_schema(pool: PgPool) -> AppSchema {
-    Schema::build(Query, Mutation, EmptySubscription)
+    let mut schema = Schema::build(Query, Mutation, EmptySubscription)
         .enable_federation()
-        .data(pool)
-        .finish()
+        .data(pool);
+
+    if cfg!(build = "release") {
+        schema = schema.limit_complexity(10).limit_depth(3);
+    }
+
+    schema.finish()
 }
 
 type Conn = PooledConnection<ConnectionManager<PgConnection>>;

@@ -3,6 +3,7 @@ use async_graphql::{Context, EmptySubscription, Object, Schema};
 
 use crate::get_conn_from_ctx;
 use crate::models::{NewUser as NewUserEntity, User as UserEntity};
+use crate::utils::hash_password;
 
 pub type AppSchema = Schema<Query, Mutation, EmptySubscription>;
 
@@ -22,7 +23,7 @@ impl Mutation {
     async fn create_user(&self, ctx: &Context<'_>, user: UserInput) -> Result<User> {
         let new_user = NewUserEntity {
             email: user.email,
-            password: user.password,
+            password: hash_password(&user.password)?,
         };
 
         let created_user_entity =
