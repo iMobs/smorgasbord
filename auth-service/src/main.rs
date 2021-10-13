@@ -1,6 +1,5 @@
-extern crate auth_service;
-
 use actix_web::{App, HttpServer};
+
 use auth_service::{configure_service, create_schema};
 
 #[actix_web::main]
