@@ -1,14 +1,18 @@
 use actix_web::{test, App};
+use dotenv::dotenv;
 use serde::{Deserialize, Serialize};
 use serde_json::{Map, Value};
 
-use auth_service::{configure_service, create_schema};
+use auth_service::{configure_service, create_schema, create_connection_pool, run_migrations};
 
 pub async fn test_graphql_request(request_body: GraphqlRequest) -> GraphqlResponse {
+    dotenv().ok();
+    let pool = create_connection_pool();
+    run_migrations(&pool);
     let mut service = test::init_service(
         App::new()
             .configure(configure_service)
-            .data(create_schema()),
+            .data(create_schema(pool)),
     )
     .await;
 
