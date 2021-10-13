@@ -1,19 +1,32 @@
 import { ApolloServer } from 'apollo-server';
-import { ApolloGateway } from '@apollo/gateway';
+import { ApolloGateway, RemoteGraphQLDataSource } from '@apollo/gateway';
+import { readFileSync } from 'fs';
 
-const supergraphSdl = '';
+const supergraphSdl = readFileSync('./supergraph.graphql').toString(); // TODO!
 
-// Initialize an ApolloGateway instance and pass it
-// the supergraph schema
+// class AuthenticatedDataSource extends RemoteGraphQLDataSource {
+//   willSendRequest({ request, context }) {
+//     if (context.authHeaderValue) {
+//       request.http.headers.set('Authorization', context.authHeaderValue);
+//     }
+//   }
+// }
+
 const gateway = new ApolloGateway({
   supergraphSdl,
+  // buildService: ({ url }) => new AuthenticatedDataSource({ url }),
 });
 
-// Pass the ApolloGateway to the ApolloServer constructor
 const server = new ApolloServer({
   gateway,
+  context: ({ req }) => ({ authHeaderValue: req.headers.authorization }),
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
-});
+server
+  .listen()
+  .then(({ url }) => {
+    console.log(`🚀 Gateway ready at ${url}`);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
