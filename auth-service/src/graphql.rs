@@ -65,7 +65,7 @@ impl Mutation {
 
 #[derive(SimpleObject)]
 struct User {
-    id: i32,
+    id: ID,
     email: String,
 }
 
@@ -78,7 +78,7 @@ struct UserInput {
 impl From<&UserEntity> for User {
     fn from(entity: &UserEntity) -> Self {
         User {
-            id: entity.id,
+            id: ID::from(entity.id),
             email: entity.email.clone(),
         }
     }
