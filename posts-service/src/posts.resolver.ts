@@ -3,7 +3,6 @@ import {
   Directive,
   Field,
   ID,
-  Int,
   ObjectType,
   Parent,
   Query,
