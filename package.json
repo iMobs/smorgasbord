@@ -1,6 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "gateway"
+    "gateway",
+    "posts-service"
   ]
 }
