@@ -4,17 +4,20 @@ import { readFileSync } from 'fs';
 
 const supergraphSdl = readFileSync('./supergraph.graphql').toString(); // TODO!
 
-// class AuthenticatedDataSource extends RemoteGraphQLDataSource {
-//   willSendRequest({ request, context }) {
-//     if (context.authHeaderValue) {
-//       request.http.headers.set('Authorization', context.authHeaderValue);
-//     }
-//   }
-// }
+class AuthenticatedDataSource extends RemoteGraphQLDataSource {
+  async willSendRequest(options: any) {
+    if (options.context.authHeaderValue) {
+      options.request.http?.headers.set(
+        'Authorization',
+        options.context.authHeaderValue,
+      );
+    }
+  }
+}
 
 const gateway = new ApolloGateway({
   supergraphSdl,
-  // buildService: ({ url }) => new AuthenticatedDataSource({ url }),
+  buildService: ({ url }) => new AuthenticatedDataSource({ url }),
 });
 
 const server = new ApolloServer({
