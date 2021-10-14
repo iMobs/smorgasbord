@@ -21,14 +21,27 @@ type Mutation {
   signup(user: UserInput!): User! @join__field(graph: AUTH_SERVICE)
 }
 
+type Post
+  @join__owner(graph: POSTS_SERVICE)
+  @join__type(graph: POSTS_SERVICE, key: "id")
+{
+  author: User! @join__field(graph: POSTS_SERVICE)
+  authorId: Int! @join__field(graph: POSTS_SERVICE)
+  content: String! @join__field(graph: POSTS_SERVICE)
+  id: ID! @join__field(graph: POSTS_SERVICE)
+  title: String! @join__field(graph: POSTS_SERVICE)
+}
+
 type Query {
   getGreeting: String! @join__field(graph: AUTH_SERVICE)
+  getPost(id: Float!): Post! @join__field(graph: POSTS_SERVICE)
   getUser(id: ID!): User! @join__field(graph: AUTH_SERVICE)
 }
 
 type User
   @join__owner(graph: AUTH_SERVICE)
   @join__type(graph: AUTH_SERVICE, key: "id")
+  @join__type(graph: POSTS_SERVICE, key: "id")
 {
   email: String! @join__field(graph: AUTH_SERVICE)
   id: Int! @join__field(graph: AUTH_SERVICE)
@@ -55,4 +68,5 @@ scalar join__FieldSet
 
 enum join__Graph {
   AUTH_SERVICE @join__graph(name: "auth-service" url: "http://localhost:8080")
+  POSTS_SERVICE @join__graph(name: "posts-service" url: "http://localhost:3000/graphql")
 }
