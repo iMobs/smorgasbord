@@ -28,5 +28,7 @@ async fn index_playground() -> Result<HttpResponse> {
 }
 
 pub fn create_schema() -> AppSchema {
-    Schema::build(Query, EmptyMutation, EmptySubscription).finish()
+    Schema::build(Query, EmptyMutation, EmptySubscription)
+        .enable_federation()
+        .finish()
 }
