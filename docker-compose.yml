@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  auth-service-db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: smorgasbord
+      POSTGRES_PASSWORD: smorgasbord
+      POSTGRES_DB: auth
+    ports:
+      - 5432:5432
+    volumes:
+      - auth-service-db-data:/var/lib/postgresql/data
+
+volumes:
+  auth-service-db-data:
