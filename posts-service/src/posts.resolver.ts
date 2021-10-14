@@ -15,7 +15,7 @@ import {
 @Directive('@extends')
 @Directive('@key(fields: "id")')
 export class User {
-  @Field((type) => Int)
+  @Field((type) => ID)
   @Directive('@external')
   id: number;
 
@@ -33,7 +33,7 @@ export class Post {
   @Field()
   content: string;
 
-  @Field((type) => Int)
+  @Field((type) => ID)
   authorId: number;
 
   @Field((type) => User)
