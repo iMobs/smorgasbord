@@ -14,7 +14,7 @@ import {
 @Directive('@extends')
 @Directive('@key(fields: "id")')
 export class User {
-  @Field((type) => ID)
+  @Field(() => ID)
   @Directive('@external')
   id: number;
 
@@ -32,14 +32,14 @@ export class Post {
   @Field()
   content: string;
 
-  @Field((type) => ID)
+  @Field(() => ID)
   authorId: number;
 
-  @Field((type) => User)
+  @Field(() => User)
   author?: User;
 }
 
-@Resolver((of) => Post)
+@Resolver(() => Post)
 export class PostsResolver {
   @Query(() => Post)
   getPost(@Args('id') id: number): Post {
@@ -51,7 +51,7 @@ export class PostsResolver {
     };
   }
 
-  @ResolveField((of) => User)
+  @ResolveField(() => User)
   author(@Parent() post: Post): any {
     return { __typename: 'User', id: post.authorId };
   }
