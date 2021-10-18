@@ -23,7 +23,7 @@
   "dependencies": {
     "@apollo/federation": "^0.20",
     "@nestjs/common": "^7.6.15",
-    "@nestjs/core": "^7.6.15",
+    "@nestjs/core": "^8.1.1",
     "@nestjs/graphql": "^9.0.6",
     "@nestjs/platform-express": "^7.6.15",
     "apollo-server-express": "^3.4.0",
