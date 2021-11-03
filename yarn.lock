@@ -100,10 +100,10 @@
     deep-equal "^2.0.5"
     pretty-format "^26.0.0"
 
-"@apollo/subgraph@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@apollo/subgraph/-/subgraph-0.1.2.tgz#ea2e9c46a88012c22a2cd696f4e0f4b4c4608eb1"
-  integrity sha512-vrPtpayvJkLdqc/iLjhXi+W9HQ+Avnb2a8ylaZb0lsm9p0y1H5QxNDhC3SHhdYRvBnNeqgxE+OGYG1rHldMQIQ==
+"@apollo/subgraph@^0.1.2", "@apollo/subgraph@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@apollo/subgraph/-/subgraph-0.1.4.tgz#21ca21ea74f54f39533b5e08e92069704c6b529b"
+  integrity sha512-G1N/sXZIHeX27tf+7lefEwVZFNYzdARe+pD597U5opfM1Gs1mYwRySfOdm1QkcItYG+EmTcSOuUJ5bNbvW0IUg==
   dependencies:
     apollo-graphql "^0.9.3"
 
