@@ -1631,7 +1631,7 @@ apollo-graphql@^0.9.0, apollo-graphql@^0.9.3:
   dependencies:
     lru-cache "^6.0.0"
 
-"apollo-server-core@^2.23.0 || ^3.0.0", apollo-server-core@^3.4.0, apollo-server-core@^3.4.1:
+"apollo-server-core@^2.23.0 || ^3.0.0", apollo-server-core@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-3.4.1.tgz#284287a17502318796ea8308522abb27bc37a955"
   integrity sha512-v1mX3ijrIPbg6iAySw+uXgTW03cxVAZkyKhvPVWAD5yzXTqmPlVnonHJyoCq/P8B0v6sIjufnIqclHuq5/D/Xw==
@@ -1670,7 +1670,7 @@ apollo-graphql@^0.9.0, apollo-graphql@^0.9.3:
   resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-3.2.0.tgz#6c5051107b073c09bb55c2554878af0e97d59d08"
   integrity sha512-Y7YH3JVAaR1199ao4dae3j1UrF9D/6AJwHpsORTjI3BvrwjU1X7Nk1VvEHn9bZfZF6ONaqUM+uCLm5c8GPhffQ==
 
-apollo-server-express@^3.4.0, apollo-server-express@^3.4.1:
+apollo-server-express@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/apollo-server-express/-/apollo-server-express-3.4.1.tgz#f900e9ef393a64e9c93ec7d60f185b8713ec7930"
   integrity sha512-uX0Niq1ftX5D/PVnXY7sTkZeHcSwVnJ60HIUKsWx8J/CtMLrC6RxfUXFRvys/DGb+qVQlK3eh9dpbSbbGDExhQ==
@@ -1703,13 +1703,13 @@ apollo-server-plugin-base@^3.3.0:
     apollo-server-caching "^3.2.0"
     apollo-server-env "^4.1.0"
 
-apollo-server@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/apollo-server/-/apollo-server-3.4.0.tgz#ced80badbf2430231750e4e09c44a22c1d2528e4"
-  integrity sha512-/3aC3Mh+d+4LbfsvT4rYLzgbobz7QZdfUV1tUYhFtt4pf57qCXBcuSt5vXqVzRJp1ex+3eLP7Q45/S5T/tK87A==
+apollo-server@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/apollo-server/-/apollo-server-3.4.1.tgz#1f4cd68a6b6ad2abb57ff7e8a093e3718eaed496"
+  integrity sha512-HBU6WhYz3Pn9Tb5kzCZTDZ7/dmpv0rMq18sYDczE0boVkwwwsPSj7TuD2KBW/NRgymHAT30REZfZ0MzuDx+WnA==
   dependencies:
-    apollo-server-core "^3.4.0"
-    apollo-server-express "^3.4.0"
+    apollo-server-core "^3.4.1"
+    apollo-server-express "^3.4.1"
     express "^4.17.1"
 
 append-field@^1.0.0:
