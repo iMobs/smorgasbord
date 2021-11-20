@@ -369,9 +369,9 @@ version = "2.11.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8e6a9edeab4427f8162ac1ccd49152fa656affab3ccfaed7eeaf8e2f9ce12ee0"
 dependencies = [
- "async-graphql-derive",
- "async-graphql-parser",
- "async-graphql-value",
+ "async-graphql-derive 2.11.3",
+ "async-graphql-parser 2.11.3",
+ "async-graphql-value 2.11.3",
  "async-stream",
  "async-trait",
  "bytes 1.1.0",
@@ -381,6 +381,35 @@ dependencies = [
  "indexmap",
  "mime",
  "multer",
+ "once_cell",
+ "pin-project-lite 0.2.7",
+ "regex",
+ "serde",
+ "serde_json",
+ "static_assertions",
+ "tempfile",
+ "thiserror",
+]
+
+[[package]]
+name = "async-graphql"
+version = "3.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "28eb129b44133b4a583f4b38048287d9747ba4a282e4e478c6ee46b9ec19ee2e"
+dependencies = [
+ "async-graphql-derive 3.0.6",
+ "async-graphql-parser 3.0.6",
+ "async-graphql-value 3.0.6",
+ "async-stream",
+ "async-trait",
+ "bytes 1.1.0",
+ "fnv",
+ "futures-util",
+ "http",
+ "indexmap",
+ "mime",
+ "multer",
+ "num-traits",
  "once_cell",
  "pin-project-lite 0.2.7",
  "regex",
@@ -402,7 +431,7 @@ dependencies = [
  "actix-web",
  "actix-web-actors",
  "async-channel",
- "async-graphql",
+ "async-graphql 2.11.3",
  "futures-util",
  "serde_json",
  "serde_urlencoded",
@@ -415,7 +444,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d8be34933c1bca0b5aedb6d8b66ad3e27045eb8304f198cc1efaed6b6dd87835"
 dependencies = [
  "Inflector",
- "async-graphql-parser",
+ "async-graphql-parser 2.11.3",
+ "darling",
+ "proc-macro-crate",
+ "proc-macro2",
+ "quote",
+ "syn",
+ "thiserror",
+]
+
+[[package]]
+name = "async-graphql-derive"
+version = "3.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "95b5c943055498dfbdd6390f8856e791e8e689082a7decc47600246af81d8843"
+dependencies = [
+ "Inflector",
+ "async-graphql-parser 3.0.6",
  "darling",
  "proc-macro-crate",
  "proc-macro2",
@@ -430,7 +475,20 @@ version = "2.11.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "99841c1f890fda6712054e7e37b207738f4aa97870cb1bffcab2f09f2df0957a"
 dependencies = [
- "async-graphql-value",
+ "async-graphql-value 2.11.3",
+ "pest",
+ "pest_derive",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "async-graphql-parser"
+version = "3.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a637070071f07804a102b31b7a6f67d7a31bea3c16378351697e131544b54b4a"
+dependencies = [
+ "async-graphql-value 3.0.6",
  "pest",
  "pest_derive",
  "serde",
@@ -442,6 +500,18 @@ name = "async-graphql-value"
 version = "2.11.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6cecac7ab6737364cff7b16e9273dd51fac7cfbd14ab5d84127df5a56ca9d422"
+dependencies = [
+ "bytes 1.1.0",
+ "indexmap",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "async-graphql-value"
+version = "3.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "13fb21cc4e13005b9778e3db09e9200efec6969a832ea8fd1ad8594682a2e322"
 dependencies = [
  "bytes 1.1.0",
  "indexmap",
@@ -487,7 +557,7 @@ version = "0.1.0"
 dependencies = [
  "actix-rt",
  "actix-web",
- "async-graphql",
+ "async-graphql 3.0.6",
  "async-graphql-actix-web",
  "diesel",
  "diesel_migrations",
@@ -1426,6 +1496,15 @@ dependencies = [
  "cfg-if 0.1.10",
  "libc",
  "winapi 0.3.9",
+]
+
+[[package]]
+name = "num-traits"
+version = "0.2.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9a64b1ec5cda2586e284722486d802acf1f7dbdc623e2bfc57e65ca1cd099290"
+dependencies = [
+ "autocfg",
 ]
 
 [[package]]
