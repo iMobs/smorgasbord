@@ -1,4 +1,4 @@
-use actix_web::{test, App};
+use actix_web::{test, web::Data, App};
 use dotenv::dotenv;
 use serde::{Deserialize, Serialize};
 use serde_json::{Map, Value};
@@ -9,10 +9,10 @@ pub async fn test_graphql_request(request_body: GraphqlRequest) -> GraphqlRespon
     dotenv().ok();
     let pool = create_connection_pool();
     run_migrations(&pool);
-    let mut service = test::init_service(
+    let service = test::init_service(
         App::new()
             .configure(configure_service)
-            .data(create_schema(pool)),
+            .app_data(Data::new(create_schema(pool))),
     )
     .await;
 
@@ -21,7 +21,7 @@ pub async fn test_graphql_request(request_body: GraphqlRequest) -> GraphqlRespon
         .set_json(&request_body)
         .to_request();
 
-    test::read_response_json(&mut service, request).await
+    test::read_response_json(&service, request).await
 }
 
 #[derive(Serialize)]

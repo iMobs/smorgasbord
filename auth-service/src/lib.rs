@@ -6,7 +6,7 @@ extern crate diesel_migrations;
 use actix_web::{web, HttpResponse, Result};
 use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};
 use async_graphql::{Context, EmptySubscription, Schema};
-use async_graphql_actix_web::{Request, Response};
+use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
 use diesel::pg::PgConnection;
 use diesel::r2d2::{ConnectionManager, Pool, PooledConnection};
 use std::env;
@@ -44,7 +44,7 @@ pub fn configure_service(cfg: &mut web::ServiceConfig) {
     );
 }
 
-async fn index(schema: web::Data<AppSchema>, req: Request) -> Response {
+async fn index(schema: web::Data<AppSchema>, req: GraphQLRequest) -> GraphQLResponse {
     schema.execute(req.into_inner()).await.into()
 }
 

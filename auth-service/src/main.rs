@@ -1,4 +1,4 @@
-use actix_web::{App, HttpServer};
+use actix_web::{web::Data, App, HttpServer};
 use dotenv::dotenv;
 
 use auth_service::{configure_service, create_connection_pool, create_schema, run_migrations};
@@ -13,8 +13,12 @@ async fn main() -> std::io::Result<()> {
 
     let schema = create_schema(pool);
 
-    HttpServer::new(move || App::new().configure(configure_service).data(schema.clone()))
-        .bind("127.0.0.1:8080")?
-        .run()
-        .await
+    HttpServer::new(move || {
+        App::new()
+            .configure(configure_service)
+            .app_data(Data::new(schema.clone()))
+    })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
 }
