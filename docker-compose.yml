@@ -1,6 +1,15 @@
 version: "2"
 
 services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.auth-service
+    environment:
+      - DATABASE_URL=postgres://smorgasbord:smorgasbord@auth-service-db/auth
+    ports:
+      - 8080:8080
+
   auth-service-db:
     image: postgres:14-alpine
     restart: always
