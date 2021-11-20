@@ -1,24 +1,18 @@
-use argonautica::{Error, Hasher, Verifier};
+use argon2::{self, Config};
 use lazy_static::lazy_static;
 
 lazy_static! {
-    static ref PASSWORD_SECRET_KEY: String =
-        std::env::var("PASSWORD_SECRET_KEY").expect("Can't read PASSWORD_SECRET_KEY");
+    static ref PASSWORD_SALT: String =
+        std::env::var("PASSWORD_SALT").expect("Can't read PASSWORD_SALT");
 }
 
-pub fn hash_password(password: &str) -> Result<String, Error> {
-    Hasher::default()
-        .with_password(password)
-        .with_secret_key(PASSWORD_SECRET_KEY.as_str())
-        .hash()
+pub fn hash_password(password: &str) -> argon2::Result<String> {
+    let config = Config::default();
+    argon2::hash_encoded(password.as_bytes(), &PASSWORD_SALT.as_bytes(), &config)
 }
 
-pub fn verify_password(hash: &str, password: &str) -> Result<bool, Error> {
-    Verifier::default()
-        .with_hash(hash)
-        .with_password(password)
-        .with_secret_key(PASSWORD_SECRET_KEY.as_str())
-        .verify()
+pub fn verify_password(hash: &str, password: &str) -> argon2::Result<bool> {
+    argon2::verify_encoded(hash, password.as_bytes())
 }
 
 #[cfg(test)]
@@ -27,7 +21,7 @@ mod test {
 
     #[test]
     fn test_password_hashing() {
-        std::env::set_var("PASSWORD_SECRET_KEY", "test secret key");
+        std::env::set_var("PASSWORD_SALT", "test secret key");
 
         let password = "test password 123";
 
