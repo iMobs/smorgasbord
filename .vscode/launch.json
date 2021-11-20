@@ -1,0 +1,84 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug unit tests in library 'auth-service'",
+			"cargo": {
+				"args": [
+					"test",
+					"--no-run",
+					"--lib",
+					"--package=auth-service"
+				],
+				"filter": {
+					"name": "auth-service",
+					"kind": "lib"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug executable 'auth-service'",
+			"cargo": {
+				"args": [
+					"build",
+					"--bin=auth-service",
+					"--package=auth-service"
+				],
+				"filter": {
+					"name": "auth-service",
+					"kind": "bin"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug unit tests in executable 'auth-service'",
+			"cargo": {
+				"args": [
+					"test",
+					"--no-run",
+					"--bin=auth-service",
+					"--package=auth-service"
+				],
+				"filter": {
+					"name": "auth-service",
+					"kind": "bin"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug integration test 'query_tests'",
+			"cargo": {
+				"args": [
+					"test",
+					"--no-run",
+					"--test=query_tests",
+					"--package=auth-service"
+				],
+				"filter": {
+					"name": "query_tests",
+					"kind": "test"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		}
+	]
+}

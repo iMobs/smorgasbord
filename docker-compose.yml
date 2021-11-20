@@ -22,5 +22,12 @@ services:
     volumes:
       - auth-service-db-data:/var/lib/postgresql/data
 
+  posts-service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.posts-service
+    ports:
+      - 3000:3000
+
 volumes:
   auth-service-db-data:

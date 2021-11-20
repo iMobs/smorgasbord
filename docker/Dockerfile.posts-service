@@ -1,0 +1,30 @@
+FROM node:16-alpine As development
+
+WORKDIR /app
+
+COPY ./posts-service/package.json yarn.lock ./
+
+RUN yarn install --frozen-lockfile
+
+COPY ./posts-service .
+
+RUN yarn build
+
+FROM node:16-alpine as production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /app
+
+COPY ./posts-service/package.json yarn.lock ./
+
+RUN yarn install --frozen-lockfile
+
+COPY ./posts-service .
+
+COPY --from=development /app/dist ./dist
+
+EXPOSE 3000
+
+CMD ["node", "dist/main"]
