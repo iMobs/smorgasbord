@@ -26,7 +26,7 @@ impl Query {
 }
 
 fn get_user_internal(ctx: &Context<'_>, id: ID) -> Result<User> {
-    let id = id.to_string().parse()?;
+    let id = id.parse()?;
     let user = crate::repository::get_user_by_id(id, &get_conn_from_ctx(ctx))?;
     Ok(User::from(user))
 }
@@ -36,25 +36,23 @@ pub struct Mutation;
 #[Object]
 impl Mutation {
     async fn signup(&self, ctx: &Context<'_>, user: UserInput) -> Result<User> {
-        let new_user = NewUserEntity {
+        let user = NewUserEntity {
             email: user.email,
             password: hash_password(&user.password)?,
         };
 
-        let created_user_entity =
-            crate::repository::create_user(new_user, &get_conn_from_ctx(ctx))?;
+        let user = crate::repository::create_user(user, &get_conn_from_ctx(ctx))?;
 
-        Ok(User::from(created_user_entity))
+        Ok(User::from(user))
     }
 
-    async fn login(&self, ctx: &Context<'_>, email: String, password: String) -> Result<bool> {
-        let maybe_user =
-            crate::repository::get_user_by_email(&email, &get_conn_from_ctx(ctx)).ok();
+    async fn login(&self, ctx: &Context<'_>, email: String, password: String) -> Result<User> {
+        let maybe_user = crate::repository::get_user_by_email(&email, &get_conn_from_ctx(ctx)).ok();
 
         if let Some(user) = maybe_user {
             if let Ok(matching) = verify_password(&user.password, &password) {
                 if matching {
-                    return Ok(true);
+                    return Ok(User::from(user));
                 }
             }
         }
