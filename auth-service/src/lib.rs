@@ -3,7 +3,7 @@ extern crate diesel;
 #[macro_use]
 extern crate diesel_migrations;
 
-use actix_web::{web, HttpResponse, Result};
+use actix_web::{get, post, web, HttpResponse, Result};
 use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};
 use async_graphql::{Context, EmptySubscription, Schema};
 use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
@@ -37,17 +37,19 @@ pub fn run_migrations(pool: &PgPool) {
 }
 
 pub fn configure_service(cfg: &mut web::ServiceConfig) {
-    cfg.service(
-        web::resource("/")
-            .route(web::post().to(index))
-            .route(web::get().to(index_playground)),
-    );
+    cfg.service(index);
+
+    if cfg!(debug_assertions) {
+        cfg.service(index_playground);
+    }
 }
 
+#[post("/")]
 async fn index(schema: web::Data<AppSchema>, req: GraphQLRequest) -> GraphQLResponse {
     schema.execute(req.into_inner()).await.into()
 }
 
+#[get("/")]
 async fn index_playground() -> Result<HttpResponse> {
     Ok(HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
