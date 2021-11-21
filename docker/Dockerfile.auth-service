@@ -2,7 +2,7 @@ FROM rust:1.56 as builder
 
 RUN USER=root cargo new --bin auth-service
 WORKDIR /auth-service
-COPY ./auth-service/Cargo.toml ./Cargo.toml
+COPY ./auth-service/Cargo.toml ./Cargo.lock ./
 RUN cargo build --release
 RUN rm src/*.rs
 
@@ -22,7 +22,7 @@ RUN apt-get update \
 EXPOSE 8080
 
 ENV TZ=Etc/UTC \
-    APP_USER=appuser
+    APP_USER=auth-service
 
 RUN groupadd $APP_USER \
     && useradd -g $APP_USER $APP_USER \
