@@ -42,7 +42,7 @@ export class Post {
 @Resolver(() => Post)
 export class PostsResolver {
   @Query(() => Post)
-  getPost(@Args('id') id: number): Post {
+  getPost(@Args('id', { type: () => ID }) id: number): Post {
     return {
       id: 1,
       title: 'Test Post',

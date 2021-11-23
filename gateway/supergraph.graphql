@@ -17,7 +17,7 @@ directive @join__owner(graph: join__Graph!) on INTERFACE | OBJECT
 directive @join__type(graph: join__Graph!, key: join__FieldSet) repeatable on INTERFACE | OBJECT
 
 type Mutation {
-  login(email: String!, password: String!): Boolean! @join__field(graph: AUTH_SERVICE)
+  login(email: String!, password: String!): User! @join__field(graph: AUTH_SERVICE)
   signup(user: UserInput!): User! @join__field(graph: AUTH_SERVICE)
 }
 
@@ -34,7 +34,7 @@ type Post
 
 type Query {
   getGreeting: String! @join__field(graph: AUTH_SERVICE)
-  getPost(id: Float!): Post! @join__field(graph: POSTS_SERVICE)
+  getPost(id: ID!): Post! @join__field(graph: POSTS_SERVICE)
   getUser(id: ID!): User! @join__field(graph: AUTH_SERVICE)
 }
 
