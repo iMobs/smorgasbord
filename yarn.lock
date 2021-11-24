@@ -125,13 +125,6 @@
     deep-equal "^2.0.5"
     pretty-format "^26.0.0"
 
-"@apollo/subgraph@^0.1.2":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@apollo/subgraph/-/subgraph-0.1.4.tgz#21ca21ea74f54f39533b5e08e92069704c6b529b"
-  integrity sha512-G1N/sXZIHeX27tf+7lefEwVZFNYzdARe+pD597U5opfM1Gs1mYwRySfOdm1QkcItYG+EmTcSOuUJ5bNbvW0IUg==
-  dependencies:
-    apollo-graphql "^0.9.3"
-
 "@apollo/subgraph@^0.1.5":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@apollo/subgraph/-/subgraph-0.1.5.tgz#ae5a1c686c97b7a2c3f7575d570f5c004578e2fd"
@@ -1635,7 +1628,7 @@ apollo-datasource@^3.3.0:
     apollo-server-caching "^3.3.0"
     apollo-server-env "^4.2.0"
 
-apollo-graphql@^0.9.0, apollo-graphql@^0.9.3, apollo-graphql@^0.9.5:
+apollo-graphql@^0.9.0, apollo-graphql@^0.9.5:
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/apollo-graphql/-/apollo-graphql-0.9.5.tgz#9113483ca7f7fa49ee9e9a299c45d30b1cf3bf61"
   integrity sha512-RGt5k2JeBqrmnwRM0VOgWFiGKlGJMfmiif/4JvdaEqhMJ+xqe/9cfDYzXfn33ke2eWixsAbjEbRfy8XbaN9nTw==
