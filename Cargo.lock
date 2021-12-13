@@ -298,9 +298,9 @@ dependencies = [
 
 [[package]]
 name = "async-graphql"
-version = "3.0.14"
+version = "3.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "439a4ee7ccb47855664edda9aef7665a8f5710d2573b0624ed8e3092a6df398c"
+checksum = "ed5dda87d4742c67d2a6df36e0a0de94d315baf761a2404ea46f57314539151e"
 dependencies = [
  "async-graphql-derive",
  "async-graphql-parser",
