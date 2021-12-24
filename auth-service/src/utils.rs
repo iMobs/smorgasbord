@@ -1,4 +1,4 @@
-use argon2::{self, Config};
+use argon2::Config;
 use rand::Rng;
 
 pub fn hash_password(password: &str) -> argon2::Result<String> {
