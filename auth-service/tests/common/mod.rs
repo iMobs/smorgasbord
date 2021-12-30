@@ -21,7 +21,7 @@ pub async fn test_graphql_request(request_body: GraphqlRequest) -> GraphqlRespon
         .set_json(&request_body)
         .to_request();
 
-    test::read_response_json(&service, request).await
+    test::call_and_read_body_json(&service, request).await
 }
 
 #[derive(Serialize)]
