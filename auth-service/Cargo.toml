@@ -9,7 +9,7 @@ edition = "2018"
 actix-web = "4.0.0-beta.21"
 rust-argon2 = "1.0"
 async-graphql = "3.0"
-async-graphql-actix-web = "3.0.26"
+async-graphql-actix-web = "3.0.27"
 diesel = { version = "1.4.4", features = ["postgres", "r2d2"] }
 diesel_migrations = "1.4.0"
 dotenv = "0.15.0"
