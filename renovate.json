@@ -2,9 +2,12 @@
   "extends": [
     "config:base"
   ],
-  "packageRules": {
-    "automerge": true,
-    "automergeStrategy": "squash"
-  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "automergeStrategy": "squash"
+    }
+],
   "prConcurrentLimit": 10
 }
