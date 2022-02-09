@@ -42,3 +42,4 @@ jobs:
     - run: yarn install --frozen-lockfile
     - run: yarn workspace posts-service test
     - run: yarn workspace posts-service test:e2e
+    - run: yarn workspace posts-service build
